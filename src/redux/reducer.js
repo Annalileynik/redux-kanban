@@ -70,14 +70,28 @@ const reducer = (state = initialState, action) => {
         case 'CREATE_TASK':
             return {...state, tasks: [...state.tasks, action.payload]};
         case "CHANGE_PRIORITY":
-            const newTasks = state.tasks.map((el)=>
-                el._id===action.payload.id ?
-                    {...el, priority:+el.priority + action.payload.direction}
-                    :el
+            const newTasks = state.tasks.map((el) =>
+                el._id === action.payload.id ?
+                    {...el, priority: +el.priority + action.payload.direction}
+                    : el
             )
-            return {...state, tasks:newTasks}
+            return {...state, tasks: newTasks}
+        case "MOVE_TASK":
+            // const statusesString = state.statuses.map(el=>el.title)
+            // const oldIndex = statusesString.indexOf(action.payload.oldStatus)
+            // const newIndex = oldIndex + action.payload.direction
+            // const newStatus = statusesString[newIndex]
+            // const movedTasks = state.tasks.map(task=>
+            // task._id === action.payload.id ? {...task, status:newStatus} : task)
+
+            const newStatus = state.statuses.map(el => el.title)[state.statuses.map(el => el.title).indexOf(action.payload.oldStatus) + action.payload.direction]
+            const movedTasks = state.tasks.map(task =>
+                task._id === action.payload.id ? {...task, status: newStatus} : task)
+            return {...state, tasks: movedTasks}
+        case "UPDATE_TASK":
         default:
             return state;
     }
+
 }
 export default reducer;

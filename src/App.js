@@ -1,13 +1,18 @@
 import Column from "./Column";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {connect} from "react-redux";
+import ModalDeleteCreateEdit from "./ModalDeleteCreateEdit";
+import './App.css';
 
 function App(props) {
     return (
-        <div>
+        <div className="App">
             <h1>{props.appName}</h1>
 
-            <button type="button" className="btn btn-outline-info"> Create Task</button>
+
+            <ModalDeleteCreateEdit buttonLabel='Create Task' buttonStyle="btn btn-outline-info"
+                                   modalTitle="Create Task"
+            />
             <div className="container">
                 <div className="row align-items-start">
                     {props.statuses.map(status=>
