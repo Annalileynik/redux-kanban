@@ -12,7 +12,6 @@ const Column = (props) => {
                 <Task
                 key={el._id}
                 task={el}/>)}
-
             </div>
 
     );

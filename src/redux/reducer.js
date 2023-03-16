@@ -89,6 +89,13 @@ const reducer = (state = initialState, action) => {
                 task._id === action.payload.id ? {...task, status: newStatus} : task)
             return {...state, tasks: movedTasks}
         case "UPDATE_TASK":
+            const updateTasks = state.tasks.map(task => task._id === action.payload.id
+                ? {...task, ...action.payload.updateTask}
+                : task)
+            return {...state, tasks:updateTasks};
+        case"DELETE_TASK":
+            const deletedTasks = state.tasks.filter(task=> task._id !==action.payload.id)
+            return {...state, tasks:deletedTasks};
         default:
             return state;
     }
