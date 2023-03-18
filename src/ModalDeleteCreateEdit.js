@@ -103,6 +103,7 @@ console.log(props.task)
 const mapStateToProps = (state) => ({
     statuses: state.statuses,
     priorities: state.priorities
+
 })
 const mapDispatchToProps = (dispatch) => ({
     createNewTask:(newTask)=>dispatch({type:"CREATE_TASK", payload:newTask}),
